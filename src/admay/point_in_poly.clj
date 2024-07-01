@@ -1,6 +1,6 @@
 (ns admay.point-in-poly)
 
-(defn colinear?
+(defn within-bounds?
   "Check to see if a value p is at or beyond the lower bound but
   does not exceed the upper bound."
   [p x y]
@@ -18,7 +18,7 @@
   [point edge]
   (let [[_ py] point
         [[_ y1] [_ y2]] edge]
-    (if (and (colinear? py y1 y2) (crosses? point edge))
+    (if (and (within-bounds? py y1 y2) (crosses? point edge))
       1
       0)))
 
