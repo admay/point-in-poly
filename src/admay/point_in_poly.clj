@@ -1,10 +1,5 @@
 (ns admay.point-in-poly)
 
-(defn in?
-  "contains? has some weird behavior. Returns true if the coll contains the elm."
-  [coll elm]
-  (some #(= elm %) coll))
-  
 (defn colinear?
   "Check to see if a value p is at or beyond the lower bound but
   does not exceed the upper bound."
