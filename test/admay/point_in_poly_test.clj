@@ -3,7 +3,19 @@
             [admay.point-in-poly :refer :all]))
 
 (deftest simple-polygons
-  (testing "point inside of polygon is found"
-    (is (= true (inside-polygon? [1 1] [[2 2] [2 -2] [-2 -2] [-2 2]]))))
-  (testing "point outside of polygon is found"
-    (is (= false (inside-polygon? [10 10] [[2 2] [2 -2] [-2 -2] [-2 2]])))))
+  (let [simple-polygon [[2 2] [2 -2] [-2 -2] [-2 2]]]
+    (testing "point inside of polygon"
+      (is (= true (inside-polygon? [1 1] simple-polygon))))
+    (testing "point outside of polygon"
+      (is (= false (inside-polygon? [10 10] simple-polygon))))
+    (testing "point on boundary"
+      (is (= false (inside-polygon? [2 2] simple-polygon))))))
+
+(deftest complex-polygons
+  (let [complex-polygon [[-5 0] [-4 3] [-3 0] [-2 3] [-1 0] [-2 -3] [-4 -3]]]
+    (testing "point inside of polygon"
+      (is (= true (inside-polygon? [-4 1] complex-polygon))))
+    (testing "point outside of polygon"
+      (is (= false (inside-polygon? [5 5] complex-polygon))))
+    (testing "point on boundary"
+      (is (= false (inside-polygon? [-2 3] complex-polygon))))))
