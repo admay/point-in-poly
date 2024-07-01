@@ -18,18 +18,15 @@
   [point edge]
   (let [[_ py] point
         [[_ y1] [_ y2]] edge]
-    (if (colinear? py y1 y2)
-      (if (crosses? point edge)
-        1
-        0)
+    (if (and (colinear? py y1 y2) (crosses? point edge))
+      1
       0)))
 
 (defn count-crosses
   "Counts the number of times a ray from point p will intersect the edges of a polygon."
   [point polygon]
   (reduce + (for [n (range (dec (count polygon)))]
-              (num-crosses point [(nth polygon n)
-                                  (nth polygon (inc n))]))))
+              (num-crosses point [(nth polygon n) (nth polygon (inc n))]))))
 
 (defn inside-polygon?
   "Determines whether or not a point is in a polygon."
