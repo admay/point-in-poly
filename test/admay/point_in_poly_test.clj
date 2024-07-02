@@ -19,3 +19,11 @@
       (is (= false (inside-polygon? [5 5] complex-polygon))))
     (testing "point on boundary"
       (is (= false (inside-polygon? [-2 3] complex-polygon))))))
+
+(deftest triangle
+  (let [triangle [[0 0] [-6 6] [6 6] [0 0]]]
+    (testing "point inside of triangle"
+      (is (= true (inside-polygon? [1 4] triangle))))
+    
+    (testing "point outside of triangle"
+      (is (= false (inside-polygon? [-1 -1] triangle))))))
