@@ -1,6 +1,6 @@
 (ns admay.point-in-poly-test
-  (:require [clojure.test :refer :all]
-            [admay.point-in-poly :refer :all]))
+  (:require [clojure.test :refer [deftest is testing]]
+            [admay.point-in-poly :refer [inside-polygon?]]))
 
 (deftest simple-polygons
   (let [simple-polygon [[2 2] [2 -2] [-2 -2] [-2 2]]]
@@ -24,6 +24,6 @@
   (let [triangle [[0 0] [-6 6] [6 6] [0 0]]]
     (testing "point inside of triangle"
       (is (= true (inside-polygon? [1 4] triangle))))
-    
+
     (testing "point outside of triangle"
       (is (= false (inside-polygon? [-1 -1] triangle))))))
